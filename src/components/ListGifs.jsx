@@ -1,15 +1,6 @@
-import { useState, useEffect } from 'react';
-import useGifs from '../hooks/useGifs';
 import Gif from './Gif';
-import Spinner from './Spinner';
 
-export default function ListGifs({ keyword }) {
-  const { gifs, loading } = useGifs(keyword);
-
-  if (loading) {
-    return <Spinner />;
-  }
-
+export default function ListGifs({ gifs }) {
   return (
     <>
       {gifs.map(({ id, title, url }) => (

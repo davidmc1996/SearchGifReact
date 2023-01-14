@@ -1,24 +1,36 @@
 import './App.css';
-import ListGifs from './components/ListGifs';
 import { Route, Link } from 'wouter';
 import Home from './pages/Home';
 import SearchResults from './pages/SearchResults';
 import Detail from './pages/Detail';
+import StaticContext from './context/StaticContext';
+import { GifsContextProvider } from './context/GifsContext';
 
-// https://youtu.be/2qgs7buSnHQ?t=1968
+// https://kentcdodds.com/blog/how-to-use-react-context-effectively
+// https://www.youtube.com/watch?v=VcxXipZg1-0
+
 function App() {
   return (
-    <div className="App">
-      <section className="App-content">
-        <h1>
-          <Link to="/">My Gif App</Link>
-        </h1>
+    <StaticContext.Provider
+      value={{
+        name: 'width-provider',
+        isSuscribed: true,
+      }}
+    >
+      <div className="App">
+        <section className="App-content">
+          <h1>
+            <Link to="/">My Gif App</Link>
+          </h1>
 
-        <Route path="/" component={Home} />
-        <Route path="/search/:keyword" component={SearchResults} />
-        <Route path="/gif/:id" component={Detail} />
-      </section>
-    </div>
+          <GifsContextProvider>
+            <Route path="/" component={Home} />
+            <Route path="/search/:keyword" component={SearchResults} />
+            <Route path="/gif/:id" component={Detail} />
+          </GifsContextProvider>
+        </section>
+      </div>
+    </StaticContext.Provider>
   );
 }
 

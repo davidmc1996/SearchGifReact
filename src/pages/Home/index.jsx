@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import ListGifs from '../../components/ListGifs';
+import Spinner from '../../components/Spinner';
+import useGifs from '../../hooks/useGifs';
 
 export default function Home() {
   const [keyword, setKeyword] = useState('');
@@ -14,6 +16,8 @@ export default function Home() {
   const handledChange = (e) => {
     setKeyword(e.target.value);
   };
+
+  const { gifs, loading } = useGifs();
 
   return (
     <>
@@ -29,9 +33,12 @@ export default function Home() {
       <Link to="/search/panda">Gifs de Pandas</Link> <br />
       <Link to="/search/peru">Gifs de Peru</Link> <br />
       <Link to="/search/ecuador">Gifs de Ecuador</Link> <br />
-      <Link to="/search/barbara+palvin">Gifs de Barbara Palvin</Link> <br />
-      <h3>Ultima busqueda</h3>
-      <ListGifs keyword="ana de armas" />
+      <Link to="/search/barbara%20palvin">Gifs de Barbara Palvin</Link> <br />
+      <h3>
+        Ultima busqueda:{' '}
+        <em>{decodeURI(localStorage.getItem('lastKeyword'))}</em>
+      </h3>
+      {loading ? <Spinner /> : <ListGifs gifs={gifs} />}
     </>
   );
 }

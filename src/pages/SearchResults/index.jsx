@@ -1,6 +1,11 @@
 import ListGifs from '../../components/ListGifs';
+import Spinner from '../../components/Spinner';
+import useGifs from '../../hooks/useGifs';
 
 export default function SearchResults({ params }) {
   const { keyword } = params;
-  return <ListGifs keyword={keyword} />;
+
+  const { gifs, loading } = useGifs(keyword);
+
+  return loading ? <Spinner /> : <ListGifs gifs={gifs} />;
 }
