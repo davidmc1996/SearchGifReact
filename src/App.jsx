@@ -1,17 +1,22 @@
 import './App.css';
 import ListGifs from './components/ListGifs';
 import { Route, Link } from 'wouter';
+import Home from './pages/Home';
+import SearchResults from './pages/SearchResults';
+import Detail from './pages/Detail';
 
+// https://youtu.be/2qgs7buSnHQ?t=1968
 function App() {
   return (
     <div className="App">
       <section className="App-content">
-        <h1>My Gif App</h1>
-        <Link to="/gif/panda">Gifs de Pandas</Link> <br />
-        <Link to="/gif/peru">Gifs de Peru</Link> <br />
-        <Link to="/gif/ecuador">Gifs de Ecuador</Link> <br />
-        <Link to="/gif/barbara+palvin">Gifs de Barbara Palvin</Link> <br />
-        <Route path="/gif/:keyword" component={ListGifs} />
+        <h1>
+          <Link to="/">My Gif App</Link>
+        </h1>
+
+        <Route path="/" component={Home} />
+        <Route path="/search/:keyword" component={SearchResults} />
+        <Route path="/gif/:id" component={Detail} />
       </section>
     </div>
   );
