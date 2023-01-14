@@ -7,5 +7,21 @@ export default function SearchResults({ params }) {
 
   const { gifs, loading } = useGifs(keyword);
 
-  return loading ? <Spinner /> : <ListGifs gifs={gifs} />;
+  const handledNextPage = () => {
+    
+  }
+
+  return (
+    <>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <h3>{decodeURI(keyword)}</h3>
+          <button onClick={handledNextPage} >Next Page</button>
+          <ListGifs gifs={gifs} />
+        </>
+      )}
+    </>
+  );
 }
