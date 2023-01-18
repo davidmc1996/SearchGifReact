@@ -34,7 +34,7 @@ export default function Home() {
         Ultima busqueda:{' '}
         <em>{decodeURI(localStorage.getItem('lastKeyword'))}</em>
       </h3>
-      <div className="listOfGifs">
+      <div className="gifsContainer">
         {loading ? <Spinner /> : <ListGifs gifs={gifs} />}
       </div>
       <LazyTrending />

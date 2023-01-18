@@ -7,6 +7,7 @@ const INITIAL_PAGE = 0;
 export default function useGifs(keyword = null) {
   const { gifs, setGifs } = useContext(gifsContext);
   const [loading, setLoading] = useState(false);
+  const [loadingNextPage, setLoadingNextPage] = useState(false);
   const [page, setPage] = useState(INITIAL_PAGE);
 
   const keywordToUse =
@@ -25,9 +26,10 @@ export default function useGifs(keyword = null) {
   useEffect(() => {
     if (page === INITIAL_PAGE) return;
 
+    setLoadingNextPage(true);
     getGifs(keywordToUse, page).then((gifs) => {
       setGifs((prevGifs) => prevGifs.concat(gifs));
-      setLoading(false);
+      setLoadingNextPage(false);
     });
   }, [keywordToUse, page]);
 
@@ -35,5 +37,6 @@ export default function useGifs(keyword = null) {
     gifs,
     loading,
     setPage,
+    loadingNextPage
   };
 }
