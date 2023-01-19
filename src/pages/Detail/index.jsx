@@ -1,14 +1,8 @@
 import Gif from '../../components/Gif';
-// import useGifs from '../../hooks/useGifs';
-import useGlobalGifs from '../../hooks/useGlobalGifs';
+import useSingleGif from '../../hooks/useSingleGif';
 
 export default function Detail({ params }) {
-  // const { gifs } = useGifs();
-  const gifs = useGlobalGifs();
-  console.log(gifs);
-
-  const gif = gifs.find((gif) => gif.id === params.id);
-  console.log(gif);
+  const { gif } = useSingleGif({ id: params.id });
 
   return <Gif {...gif} />;
 }

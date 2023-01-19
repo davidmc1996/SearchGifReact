@@ -7,7 +7,7 @@ import StaticContext from './context/StaticContext';
 import { GifsContextProvider } from './context/GifsContext';
 
 // https://kentcdodds.com/blog/how-to-use-react-context-effectively
-// https://www.youtube.com/watch?v=Wo7_OVtu1ls&list=PLV8x_i1fqBw0B008sQn79YxCjkHJU84pC&index=6
+// https://www.youtube.com/watch?v=b-pwpHaYOTI&list=PLV8x_i1fqBw0B008sQn79YxCjkHJU84pC&index=7
 // React Context Loader
 // https://midu.dev/
 
