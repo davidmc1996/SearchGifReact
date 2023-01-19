@@ -1,35 +1,26 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'wouter';
+import { useLocation } from 'wouter';
 import ListGifs from '../../components/ListGifs';
 import Spinner from '../../components/Spinner';
 import LazyTrending from '../../components/LazyTrending';
 import useGifs from '../../hooks/useGifs';
+import SearchForm from '../../components/SearchForm';
+import { useCallback } from 'react';
 
 export default function Home() {
-  const [keyword, setKeyword] = useState('');
   const [path, pushLocation] = useLocation();
 
-  const handledSubmit = (e) => {
-    e.preventDefault();
-    pushLocation(`/search/${keyword}`);
-  };
-
-  const handledChange = (e) => {
-    setKeyword(e.target.value);
-  };
+  const handledSubmit = useCallback(
+    (keyword) => {
+      pushLocation(`/search/${keyword}`);
+    },
+    [pushLocation]
+  );
 
   const { gifs, loading } = useGifs();
 
   return (
     <>
-      <form onSubmit={handledSubmit}>
-        <input
-          type="search"
-          value={keyword}
-          onChange={handledChange}
-          placeholder="Search a gif here..."
-        />
-      </form>
+      <SearchForm onSubmit={handledSubmit} />
       <h3>
         Ultima busqueda:{' '}
         <em>{decodeURI(localStorage.getItem('lastKeyword'))}</em>
