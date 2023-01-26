@@ -4,6 +4,7 @@ import Spinner from '../../components/Spinner';
 import useGifs from '../../hooks/useGifs';
 import useNearScreen from '../../hooks/useNearScreen';
 import debounce from 'just-debounce-it';
+import Helmet from 'react-helmet';
 
 export default function SearchResults({ params }) {
   const { keyword } = params;
@@ -35,6 +36,9 @@ export default function SearchResults({ params }) {
         <Spinner />
       ) : (
         <>
+          <Helmet>
+            <title>Busqueda: {decodeURI(keyword)} | Giffy</title>
+          </Helmet>
           <h3>{decodeURI(keyword)}</h3>
           <ListGifs gifs={gifs} />
           <div id="visor" ref={externalRef}></div>

@@ -5,6 +5,7 @@ import LazyTrending from '../../components/LazyTrending';
 import useGifs from '../../hooks/useGifs';
 import SearchForm from '../../components/SearchForm';
 import { useCallback } from 'react';
+import Helmet from 'react-helmet';
 
 export default function Home() {
   const [path, pushLocation] = useLocation();
@@ -20,6 +21,9 @@ export default function Home() {
 
   return (
     <>
+      <Helmet>
+        <title>Home | Giffy</title>
+      </Helmet>
       <SearchForm onSubmit={handledSubmit} />
       <h3>
         Ultima busqueda:{' '}
