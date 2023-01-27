@@ -7,7 +7,7 @@ import StaticContext from './context/StaticContext';
 import { GifsContextProvider } from './context/GifsContext';
 
 // https://kentcdodds.com/blog/how-to-use-react-context-effectively
-// https://www.youtube.com/watch?v=Wjy_nlYXTik&list=PLV8x_i1fqBw0B008sQn79YxCjkHJU84pC&index=8
+// https://www.youtube.com/watch?v=Wjy_nlYXTik&list=PLV8x_i1fqBw0B008sQn79YxCjkHJU84pC&index=9
 // React Context Loader
 // https://midu.dev/
 // https://htmlhead.dev/
@@ -28,7 +28,7 @@ function App() {
 
           <GifsContextProvider>
             <Route path="/" component={Home} />
-            <Route path="/search/:keyword" component={SearchResults} />
+            <Route path="/search/:keyword/:rating?" component={SearchResults} />
             <Route path="/gif/:id" component={Detail} />
             <Route path="/404" component={() => <h4>404 ERROR :C</h4>} />
           </GifsContextProvider>
